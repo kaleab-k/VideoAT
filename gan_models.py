@@ -155,35 +155,6 @@ class GeneratorUCF3D(nn.Module):
 
 class DiscriminatorUCF3D(nn.Module):
 
-#     def __init__(self, in_ch):
-#         super(DiscriminatorUCF3D, self).__init__()
-#         self.conv1 = nn.Conv3d(in_ch, 64, 3, stride=2)
-#         self.bn1 = nn.BatchNorm3d(64)
-#         self.conv2 = nn.Conv3d(64, 128, 3, stride=2)
-#         self.bn2 = nn.BatchNorm3d(128)
-#         self.conv3 = nn.Conv3d(128, 256, 3, stride=2)
-#         self.bn3 = nn.BatchNorm3d(256)
-# #         self.conv4 = nn.Conv3d(256, 512, 3, stride=2)
-# #         self.bn4 = nn.BatchNorm3d(512)
-#         self.leaky_relu = nn.LeakyReLU()
-#         self.sigmoid = nn.Sigmoid()
-#         if in_ch == 1:
-#             self.fc4 = nn.Linear(1024, 1)
-#         else:
-#             self.fc4 = nn.Linear(43264, 18432)
-#             self.fc5 = nn.Linear(18432, 1024)
-#             self.fc6 = nn.Linear(1024, 1)
-
-#     def forward(self, x):
-#         h = self.leaky_relu(self.bn1(self.conv1(x)))
-#         h = self.leaky_relu(self.bn2(self.conv2(h)))
-#         h = self.leaky_relu(self.bn3(self.conv3(h)))
-# #         h = self.leaky_relu(self.bn4(self.conv4(h)))
-# #         print(h.shape, h.reshape(h.size(0), -1).shape)
-#         h = self.fc4(h.reshape(h.size(0), -1))
-#         h = self.fc5(h)
-#         h = self.sigmoid(self.fc6(h.view(h.size(0), -1)))
-#         return h
     def __init__(self, in_ch=3, dim=112, out_conv_channels=512):
         super(DiscriminatorUCF3D, self).__init__()
         conv1_channels = int(out_conv_channels / 8)

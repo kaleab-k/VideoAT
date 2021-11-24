@@ -180,44 +180,18 @@ def train_epoch(epoch,
                     opt_G.zero_grad()
                     loss_G.backward()
                     opt_G.step()
-#                     outputs = model(adv_inputs)
-#                     loss = criterion(outputs, targets)
-#                     loss += loss_G
-#                     opt_G.zero_grad()
-#                     loss.backward()
-#                     opt_G.step()
-#             else:
             outputs = model(adv_inputs)
         
         loss = criterion(outputs, targets) 
-#         L1_reg = torch.tensor(0., requires_grad=True)
-#         for name, param in model.named_parameters():
-#             if 'weight' in name:
-#                 L1_reg = L1_reg + torch.norm(param, 1)
-
-#         loss = loss + 1e-4 * L1_reg
 
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-#             outputs = model(adv_inputs)
-        
-#         loss = criterion(outputs, targets)
             
         acc = calculate_accuracy(outputs, targets)
 
         losses.update(loss.item(), inputs.size(0))
         accuracies.update(acc, inputs.size(0))
-
-#         optimizer.zero_grad()
-#         loss.backward()
-#         optimizer.step()
-        
-#         if use_ape:
-#             loss_G = loss_bce_G(x_fake, inputs)
-#             opt_G.zero_grad()
-#             loss_G.backward()
-#             opt_G.step()
 
 
         batch_time.update(time.time() - end_time)
