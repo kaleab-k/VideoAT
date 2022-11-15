@@ -161,7 +161,7 @@ def train_epoch(epoch,
                 t_real = torch.autograd.Variable(torch.ones(current_size).to(device))#.to(f'cuda:{model.device_ids[0]}'))
                 t_fake = torch.autograd.Variable(torch.zeros(current_size).to(device))#.to(f'cuda:{model.device_ids[0]}'))
 
-                y_real = D(adv_inputs).squeeze()
+                y_real = D(inputs).squeeze()
                 inputs_fake = model[0](adv_inputs)
                 
                 y_fake = D(inputs_fake).squeeze()
